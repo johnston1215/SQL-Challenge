@@ -1,25 +1,7 @@
--- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
+﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
 -- Link to schema: https://app.quickdatabasediagrams.com/#/d/yNK4oB
 -- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
-CREATE TABLE Employee_Data (
-    emp_no int   NOT NULL,
-    emp_title_id varchar   NOT NULL,
-    birth_date varchar(10)   NOT NULL,
-    first_name varchar   NOT NULL,
-    last_name varchar   NOT NULL,
-    sex varchar(1)   NOT NULL,
-    hire_date varchar(10)   NOT NULL,
-    CONSTRAINT pk_Employee_Data PRIMARY KEY (
-        emp_no
-     )
-);
-
-CREATE TABLE Employee_Depts (
-    emp_no int   NOT NULL,
-    dept_no varchar(4)   NOT NULL,
-     )
-);
 
 CREATE TABLE Data_Depts (
     dept_no varchar(4)   NOT NULL,
@@ -29,10 +11,28 @@ CREATE TABLE Data_Depts (
      )
 );
 
+CREATE TABLE Employee_Depts (
+    emp_no int   NOT NULL,
+    dept_no varchar(4)   NOT NULL
+);
+
 CREATE TABLE Manager_Depts (
     emp_no int   NOT NULL,
     dept_no varchar(4)   NOT NULL,
     CONSTRAINT pk_Manager_Depts PRIMARY KEY (
+        emp_no
+     )
+);
+
+CREATE TABLE Employee_Data (
+    emp_no int   NOT NULL,
+    emp_title_id varchar   NOT NULL,
+    birth_date date   NOT NULL,
+    first_name varchar   NOT NULL,
+    last_name varchar   NOT NULL,
+    sex varchar(1)   NOT NULL,
+    hire_date date   NOT NULL,
+    CONSTRAINT pk_Employee_Data PRIMARY KEY (
         emp_no
      )
 );
@@ -49,7 +49,7 @@ CREATE TABLE Title_Data (
     title_id varchar(5)   NOT NULL,
     title varchar   NOT NULL,
     CONSTRAINT pk_Title_Data PRIMARY KEY (
-        title
+        title_id
      )
 );
 
@@ -70,3 +70,4 @@ REFERENCES Title_Data (title_id);
 
 ALTER TABLE Salary_Data ADD CONSTRAINT fk_Salary_Data_emp_no FOREIGN KEY(emp_no)
 REFERENCES Employee_Data (emp_no);
+
